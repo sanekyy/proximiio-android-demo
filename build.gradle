@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "io.proximi.proximiio"
         minSdkVersion 18
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
     }
     buildTypes {
         release {
@@ -26,17 +26,17 @@ android {
 
 repositories {
     maven {
-        url "http://indooratlas-ltd.bintray.com/mvn-public"
+        url "http://proximi-io.bintray.com/proximiio-android"
     }
     maven {
-        url 'https://maven.fabric.io/public'
+        url "http://indooratlas-ltd.bintray.com/mvn-public"
     }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.2.0'
-    compile 'com.google.android.gms:play-services-maps:8.4.0'
-    compile project(':proximiiolibrary')
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.google.android.gms:play-services-maps:9.0.0'
+    compile 'io.proximi.proximiiolibrary:proximiiolibrary:1.1.7'
 }
