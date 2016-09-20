@@ -1,8 +1,10 @@
 package io.proximi.proximiiodemo;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,11 +14,16 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.GroundOverlay;
+import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 
 import io.proximi.proximiiolibrary.Proximiio;
 import io.proximi.proximiiolibrary.ProximiioFactory;
+import io.proximi.proximiiolibrary.ProximiioFloor;
 import io.proximi.proximiiolibrary.ProximiioGeofence;
+import io.proximi.proximiiolibrary.ProximiioImageCallback;
 import io.proximi.proximiiolibrary.ProximiioListener;
 
 /**
@@ -29,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private boolean locationEnabled;
     private Proximiio proximiio;
     private ProximiioListener listener;
+    private ProximiioFloor lastFloor;
+    private ProximiioImageCallback imageCallback;
+    private GroundOverlay floorPlan;
 
     private final static String TAG = "ProximiioDemo";
 
@@ -66,7 +76,40 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void loginFailed(LoginError loginError) {
                 Log.e(TAG, "LoginError! (" + loginError.toString() + ")");
             }
+
+            @Override
+            public void changedFloor(@Nullable ProximiioFloor floor) {
+                lastFloor = floor;
+
+                if (floor != null && floor.hasFloorPlan()) {
+                    floor.requestFloorPlanImage(MainActivity.this, imageCallback);
+                }
+            }
         };
+
+        imageCallback = new ProximiioImageCallback() {
+            @Override
+            public void loaded(Bitmap bitmap, float width, float height, double[] floorPlanPivot) {
+                if (map != null) {
+                    if (floorPlan != null) {
+                        floorPlan.remove();
+                    }
+
+                    floorPlan = map.addGroundOverlay(new GroundOverlayOptions()
+                                                             .image(BitmapDescriptorFactory.fromBitmap(bitmap))
+                                                             .position(new LatLng(floorPlanPivot[0], floorPlanPivot[1]), width, height)
+                                                             .zIndex(0));
+                }
+            }
+
+            @Override
+            public void failed() {
+                if (map != null && lastFloor != null) {
+                    lastFloor.requestFloorPlanImage(getBaseContext(), this);
+                }
+            }
+        };
+
         proximiio.addListener(listener);
 
         // Login to Proximi.io
