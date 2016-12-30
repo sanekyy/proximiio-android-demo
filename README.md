@@ -3,6 +3,7 @@
 Welcome!
 
 This is a simple working demonstration of Proximi.io platform in action on Android.
+Our complete Android documentation can be found [here](https://proximi.io/docs/android/).
 
 ### How to use
 

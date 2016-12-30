@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onStart();
 
         // Create a Proximiio instance
-        proximiio = ProximiioFactory.getProximiio(this, this);
+        proximiio = ProximiioFactory.getProximiio(this);
 
         // Create a ProximiioListener and add it to Proximiio
         listener = new ProximiioListener() {
@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
             @Override
-            public void geofenceExit(ProximiioGeofence geofence) {
-                Log.d(TAG, "Geofence exit: " + geofence.getName());
+            public void geofenceExit(ProximiioGeofence geofence, @Nullable Long dwellTime) {
+                Log.d(TAG, "Geofence exit: " + geofence.getName() + ", dwell time: " + String.valueOf(dwellTime));
             }
 
             @Override
@@ -110,10 +110,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         };
 
+        proximiio.setActivity(this);
         proximiio.addListener(listener);
 
         // Login to Proximi.io
         proximiio.setLogin(EMAIL, PASSWORD);
+
+        proximiio.checkPermissions();
 
         // Initialize the map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -124,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onStop() {
         super.onStop();
         proximiio.removeListener(listener);
+        proximiio.removeActivity(this);
     }
 
     @Override
