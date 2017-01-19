@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "io.proximi.proximiiodemo"
@@ -41,5 +41,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.google.android.gms:play-services-maps:10.0.1'
-    compile 'io.proximi.proximiiolibrary:proximiiolibrary:2.4'
+    compile 'io.proximi.proximiiolibrary:proximiiolibrary:2.4.2'
 }
