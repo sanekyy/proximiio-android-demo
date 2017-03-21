@@ -39,5 +39,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.google.android.gms:play-services-maps:10.2.0'
-    compile 'io.proximi.proximiiolibrary:proximiiolibrary:2.5.1'
+    compile 'io.proximi.proximiiolibrary:proximiiolibrary:2.5.2'
 }
