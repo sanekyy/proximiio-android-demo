@@ -21,7 +21,6 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
-        exclude 'lib/x86/libsqlcipher.so'
     }
 }
 
@@ -39,5 +38,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.google.android.gms:play-services-maps:10.2.1'
-    compile 'io.proximi.proximiiolibrary:proximiiolibrary:2.5.5'
+    compile 'io.proximi.proximiiolibrary:proximiiolibrary:2.5.6'
 }
