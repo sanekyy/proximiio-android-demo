@@ -20,6 +20,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value=YOUR_APIKEY_HERE (https://developers.google.com/maps/documentation/android-api/signup)/>
 
+        <receiver android:name=".BackgroundListener"  android:exported="false">
+            <intent-filter>
+                <action android:name="io.proximi.proximiiolibrary.action.POSITION"/>
+                <action android:name="io.proximi.proximiiolibrary.action.OUTPUT"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
