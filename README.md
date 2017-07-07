@@ -10,7 +10,7 @@ Our complete Android documentation can be found [here](https://proximi.io/docs/a
 
 Note: The following two steps are required and the errors you get during the first build are intentional! If you don't define the email/password & Google API key, the build will result in an error. In case you don't want to obtain the Google API key, you can use empty value to get the project to build. In this case the map tiles will not show up but the project will build without error.
 
-Clone or download this repo and open it with Android Studio as an existing project. After that you need to replace the placeholders in the following section with your credentials (MainActivityListener.java):
+Clone or download this repo and open it with Android Studio as an existing project. After that you need to replace the placeholders in the following section with your credentials (MainActivity.java):
 
 ```
 proximiioAPI.setAuth(AUTH_KEY);
