@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Toolbar toolbar;
 
     private static final String TAG = "ProximiioDemo";
-    private static final String AUTH = "AUTH_KEY_HERE"; // TODO: Replace with your own!
+
+    public static final String AUTH = "AUTH_KEY_HERE"; // TODO: Replace with your own!
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

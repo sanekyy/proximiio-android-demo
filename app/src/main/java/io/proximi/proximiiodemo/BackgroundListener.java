@@ -69,6 +69,12 @@ public class BackgroundListener extends BroadcastReceiver {
                     }
                 }
                 break;
+            case Intent.ACTION_BOOT_COMPLETED:
+                Log.d(TAG, "Phone booted!");
+                ProximiioAPI proximiioAPI = new ProximiioAPI("BackgroundReceiver", context);
+                proximiioAPI.setAuth(MainActivity.AUTH);
+                proximiioAPI.destroy();
+                break;
         }
     }
 }
