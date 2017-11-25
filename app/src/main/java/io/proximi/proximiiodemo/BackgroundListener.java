@@ -24,7 +24,7 @@ public class BackgroundListener extends BroadcastReceiver {
             case ProximiioAPI.ACTION_POSITION:
                 Log.d(TAG, "Position: " + intent.getDoubleExtra(ProximiioAPI.EXTRA_LAT, 0) + ", " + intent.getDoubleExtra(ProximiioAPI.EXTRA_LON, 0));
                 break;
-            case ProximiioAPI.ACTION_OUTPUT:
+            /*case ProximiioAPI.ACTION_OUTPUT:
                 JSONObject json = null;
                 try {
                     json = new JSONObject(intent.getStringExtra(ProximiioAPI.EXTRA_JSON));
@@ -38,7 +38,7 @@ public class BackgroundListener extends BroadcastReceiver {
                     try {
                         if (!json.isNull("type") && !json.isNull("title")) {
                             if (json.getString("type").equals("push")) {
-                                title = json.getString("title");
+                                title = json.getString("name");
                             }
                         }
                     }
@@ -68,7 +68,7 @@ public class BackgroundListener extends BroadcastReceiver {
                         notificationManager.notify(1, notification);
                     }
                 }
-                break;
+                break;*/
             case Intent.ACTION_BOOT_COMPLETED:
                 Log.d(TAG, "Phone booted!");
                 ProximiioAPI proximiioAPI = new ProximiioAPI("BackgroundReceiver", context);
