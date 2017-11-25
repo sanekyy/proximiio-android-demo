@@ -140,8 +140,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .build().create(MyService.class);
     }
 
+
+
     @Override
     protected void onDestroy() {
+        System.out.println("destroy");
         super.onDestroy();
         if (mapHelper != null) {
             mapHelper.destroy();
